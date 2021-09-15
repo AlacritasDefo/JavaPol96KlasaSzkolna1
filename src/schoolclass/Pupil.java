@@ -22,12 +22,6 @@ public class Pupil extends Person {
         return noteList;
     }
 
-    /*
-    public void addNote(Note note) {
-        noteList.add(note);
-    }
-    */
-
     public List<Note> getNoteList(String subjectName) {
         List<Note> subjectNotes = new ArrayList<Note>();
         for (Note note : noteList) {

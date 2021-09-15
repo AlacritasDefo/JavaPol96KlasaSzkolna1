@@ -1,19 +1,14 @@
 package schoolclass;
-/*
-firstName (imię),
-- lastName (nazwisko),
-- getterami do pól
-- metoda toString() : imię + nazwisko
- */
-public abstract class Person {
-    public String firstName;
 
-    public Person() {
-    }
+public class Person {
+    public String firstName;
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Person() {
     }
 
     public String getFirstName() {

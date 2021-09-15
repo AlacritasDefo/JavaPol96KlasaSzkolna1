@@ -1,20 +1,23 @@
 package schoolclass;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class SchoolClass {
     private String className;
-    private List<Pupil> pupilList;
-    private List<Teacher> teacherList;
+    private List<Pupil> pupilsList;
+    private List<Teacher> teachersList;
+
+    public void setSubjectList(Set<Subject> subjectList) {
+        this.subjectList.addAll(subjectList);
+    }
+
     private HashSet<Subject> subjectList;
     private static SchoolClass instance = null;
 
     private SchoolClass(String className) {
         this.className = className;
-        pupilList = new ArrayList<>();
-        teacherList = new ArrayList<>();
+        pupilsList = new ArrayList<>();
+        teachersList = new ArrayList<>();
         subjectList = new HashSet<>();
     }
 
@@ -38,13 +41,32 @@ public class SchoolClass {
         return subjectList;
     }
     public void addPupil (Pupil pupil){
-        pupilList.add(pupil);
+        pupilsList.add(pupil);
     }
     public void showPupils(){
         System.out.println("Pupils in classs " + className + ": "  );
-        for (Pupil pupil : pupilList){
+        for (Pupil pupil : pupilsList){
             System.out.println(pupil.toString());
         }
     }
 
+    /**
+     * Metoda pozwalająca wstawiać do zbioru zestaw kilku obiektów
+     * @param objs
+     * @return
+     */
+    public void setSubjectsList(Subject... objs) {
+        subjectList.clear();
+        Collections.addAll(subjectList, objs);
+    }
+
+    public void setSubjectsList(Set<Subject> set) {
+        subjectList.clear();
+        subjectList.addAll(set);
+    }
+
+    public void setPupilsList(Pupil... objs) {
+        pupilsList.clear();
+        Collections.addAll(pupilsList, objs);
+    }
 }
