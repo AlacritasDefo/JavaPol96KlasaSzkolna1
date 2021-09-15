@@ -24,4 +24,12 @@ public class Subject {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "name='" + name + '\'' +
+                ", teacher=" + teacher +
+                '}';
+    }
 }

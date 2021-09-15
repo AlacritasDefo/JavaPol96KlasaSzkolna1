@@ -14,8 +14,15 @@ public class Main {
 
         System.out.println(teacher1);
         System.out.println(pupil1);
+        SchoolClass klasa = SchoolClass.getInstance("Klasa 4a");
+        klasa.addSubject("Fizyka");
+        klasa.addSubject("Chemia");
+        klasa.addSubject("Fizyka");
+        System.out.println(klasa.getSubjectList());
+        klasa.addPupil(pupil1);
+        klasa.showPupils();
+    }
 
-        }
 
 
 
