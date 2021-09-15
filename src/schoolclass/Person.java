@@ -5,7 +5,7 @@ firstName (imię),
 - getterami do pól
 - metoda toString() : imię + nazwisko
  */
-public class Person {
+public abstract class Person {
     public String firstName;
 
     public String getFirstName() {
