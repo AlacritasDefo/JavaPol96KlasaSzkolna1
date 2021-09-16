@@ -13,9 +13,9 @@ public class SchoolClass {
     }
 
     private HashSet<Subject> subjectList;
-    private static SchoolClass instance = null;
 
-    private SchoolClass(String className) {
+
+    public SchoolClass(String className) {
         this.className = className;
         pupilsList = new ArrayList<>();
         subjectList = new HashSet<>();
@@ -23,13 +23,6 @@ public class SchoolClass {
 
     public void addSubject(Subject subject){
         subjectList.add(subject);
-    }
-
-    public static SchoolClass getInstance(String className) {
-        if (instance == null) {
-            instance = new SchoolClass(className);
-        }
-        return instance;
     }
 
 
@@ -71,7 +64,8 @@ public class SchoolClass {
     }
 
     public void adNote(Pupil pupil, String subjectName, double note) {
-        Note newNote = new Note(new Subject(subjectName), note);
+        Subject subject = getSubject(subjectName).get();
+        Note newNote = new Note(subject, note);
         pupil.noteList.add(newNote);
     }
     public void adNote(Pupil pupil, Note note) {
@@ -105,4 +99,42 @@ public class SchoolClass {
                 throw new ClassExeption ("Teacher for subject " + subject.getName() + " not found !" );
         }
     }
+
+    public Optional<Subject> getSubject(String subjectName) {
+        return subjectList.stream()
+                .filter(o->o.getName() == subjectName)
+                .findAny();
+    }
+
+    public Double averageNotesForPupil(Pupil pupil) {
+        double averageNotes = 0;
+        for(Note n : pupil.getNoteList()) {
+            averageNotes += n.getNote();
+        }
+        return averageNotes / pupil.getNoteList().size();
+    }
+
+    public Double averageNotesForAllPupils(String subjectName) {
+        OptionalDouble averageMark = pupilsList.stream()
+                .flatMap(p -> p.getNoteList().stream())
+                .mapToDouble(n -> n.getNote())
+                .average();
+
+        return averageMark.getAsDouble();
+    }
+
+    public Pupil pupilWithBiggestAverage() {
+        double max = 0;
+        Pupil pupilWithMaxAv = null;
+
+        for (Pupil p :pupilsList) {
+            double average = averageNotesForPupil(p);
+            if (average > max) {
+                max = average;
+                pupilWithMaxAv = p;
+            }
+        }
+        return pupilWithMaxAv;
+    }
+
 }

@@ -11,13 +11,21 @@ public class School {
    private List<Teacher> teachers;
    private List<Subject> subjects;
    private  String schoolName;
+   public static School instance = null;
 
-   public School (String schoolName){
+   private School (String schoolName){
        this.schoolName = schoolName;
        teachers = new ArrayList<Teacher>();
        classes = new ArrayList<SchoolClass>();
        subjects = new ArrayList<Subject>();
    }
+
+    public static School getInstance(String schoolName) {
+        if (instance == null) {
+            instance = new School(schoolName);
+        }
+        return instance;
+    }
 
     @Override
     public String toString() {
