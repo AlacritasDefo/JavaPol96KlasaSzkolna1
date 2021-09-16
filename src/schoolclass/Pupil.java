@@ -39,6 +39,7 @@ public class Pupil extends Person {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate=" + birthDate +
+                ", noteList=" + noteList +
                 '}';
     }
 }

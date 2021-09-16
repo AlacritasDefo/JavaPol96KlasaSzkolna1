@@ -46,6 +46,20 @@ public class School {
            subjects.add(new Subject(subjectName));
        }
    }
+
+    /**
+     * Dodawanie przedmiotu dla konkretnej klasy szkolnej
+     */
+   public void addSubjectForClass (String subjectName, SchoolClass schoolClass) throws ClassExeption{
+       for(Subject subject : subjects){
+           if(subject.getName().equals(subjectName)){
+               schoolClass.addSubject(new Subject (subjectName));
+               return;
+           }
+       }
+       throw new ClassExeption ("No subject "+ subjectName +" in school");
+   }
+
     public void showClasses (){
         System.out.println(" Classes in school " + schoolName + " : ");
         for (SchoolClass schoolClass : classes){

@@ -21,6 +21,10 @@ public class SchoolClass {
         subjectList = new HashSet<>();
     }
 
+    public void addSubject(Subject subject){
+        subjectList.add(subject);
+    }
+
     public static SchoolClass getInstance(String className) {
         if (instance == null) {
             instance = new SchoolClass(className);
@@ -28,14 +32,7 @@ public class SchoolClass {
         return instance;
     }
 
-    public void addSubject(String subjectName) {
-        for (Subject subject : subjectList) {
-            if (subject.getName().equals(subjectName)) {
-                return;
-            }
-        }
-        subjectList.add(new Subject(subjectName));
-    }
+
 
     public HashSet<Subject> getSubjectList() {
         return subjectList;
@@ -77,6 +74,9 @@ public class SchoolClass {
         Note newNote = new Note(new Subject(subjectName), note);
         pupil.noteList.add(newNote);
     }
+    public void adNote(Pupil pupil, Note note) {
+        pupil.noteList.add(note);
+    }
 
     public void showSubjects() {
         System.out.println(" Subjects in class " + className + " : ");
@@ -102,7 +102,7 @@ public class SchoolClass {
                     break;
             }
             if (teacherFound == false)
-                throw new ClassExeption ("Teacher for subject" + subject.getName() + " not found !" );
+                throw new ClassExeption ("Teacher for subject " + subject.getName() + " not found !" );
         }
     }
 }
