@@ -40,7 +40,20 @@ public class Main {
 
         klasa.addPupil(pupil1);
         klasa.showPupils();
+        School school = new School("Szkoła nr 1");
+        school.addSchoolClass(klasa);
+        school.addTeacher(teacher1);
+        school.addSubjects("Język angielski", "Plastyka", "Technika", "Fizyka","Chemia");
+        try {
+            klasa.addTeachersToSubjects(school.getTeachers());
+        }
+        catch (ClassExeption classExeption){
+            System.out.println(classExeption.getMessage());
+            System.exit(-1);
+        }
     }
+
+
 
 
 
