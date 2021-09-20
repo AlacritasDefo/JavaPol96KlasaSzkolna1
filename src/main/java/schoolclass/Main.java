@@ -12,6 +12,7 @@ public class Main {
         Pupil pupil1 = new Pupil("Kornelia", "Matuszak", LocalDate.of(1994, 01, 18));
         Pupil pupil2 = new Pupil("Amelia", "Domańska", LocalDate.of(1998, 06, 28));
 
+        pupil1.setBonus(new BehaviorBonus());
 
         System.out.println(teacher1);
         System.out.println(pupil1);
@@ -64,15 +65,15 @@ public class Main {
         Note note6 = new Note(chemia, 2);
 
 
-        klasa.adNote(pupil1, note1);
-        klasa.adNote(pupil1, note2);
-        klasa.adNote(pupil1, note3);
+        klasa.addNote(pupil1, note1);
+        klasa.addNote(pupil1, note2);
+        klasa.addNote(pupil1, note3);
 
-        klasa.adNote(pupil2, note4);
-        klasa.adNote(pupil2, note5);
-        klasa.adNote(pupil2, note6);
+        klasa.addNote(pupil2, note4);
+        klasa.addNote(pupil2, note5);
+        klasa.addNote(pupil2, note6);
 
-        klasa.adNote(pupil1, "Chemia", 5);
+        klasa.addNote(pupil1, "Chemia", 5);
         System.out.println(pupil1);
 
 //        System.out.println("Average notes amount for pupil: " + pupil1.getFirstName() +" " + pupil1.getLastName()+ " = " + klasa.averageNotesForPupil(pupil1));
@@ -102,10 +103,13 @@ public class Main {
         }
 
         klasa.showPupils();
-        school.saveToFile("school.json");
-        school = school.loadFromFile("school.json");
-        System.out.println("OUR SCHOOL RETRIEVED FROM JSON FILE:");
-        System.out.println(school);
+//        school.saveToFile("school.json");
+//        school = school.loadFromFile("school.json");
+//        System.out.println("OUR SCHOOL RETRIEVED FROM JSON FILE:");
+//        System.out.println(school);
+
+
+        pupil1.setBonus(new BehaviorBonus());
     }
 
 }

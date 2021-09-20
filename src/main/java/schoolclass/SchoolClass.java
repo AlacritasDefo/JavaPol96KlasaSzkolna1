@@ -69,13 +69,21 @@ public class SchoolClass {
         Collections.addAll(pupilsList, objs);
     }
 
-    public void adNote(Pupil pupil, String subjectName, double note) {
+    public void addNote(Pupil pupil, String subjectName, double note) {
         Subject subject = getSubject(subjectName).get();
+        if (pupil.getBonus() != null) {
+            note += pupil.getBonus().up();
+        }
         Note newNote = new Note(subject, note);
         pupil.noteList.add(newNote);
     }
-    public void adNote(Pupil pupil, Note note) {
-        pupil.noteList.add(note);
+    public void addNote(Pupil pupil, Note note) {
+        if (pupil.getBonus() != null) {
+            Note note1 = new Note(note.getSubject(), note.getNote() + pupil.getBonus().up());
+            pupil.noteList.add(note1);
+        } else {
+            pupil.noteList.add(note);
+        }
     }
 
     public void showSubjects() {

@@ -9,6 +9,7 @@ import java.util.List;
 public class Pupil extends Person {
     private LocalDate birthDate;
     List<Note> noteList;
+    private IBonus bonus;
 
     public Pupil(String firstName, String lastName, LocalDate birthDate) {
         super(firstName, lastName);
@@ -18,6 +19,10 @@ public class Pupil extends Person {
 
     public LocalDate getBirthDate() {
         return birthDate;
+    }
+
+    public IBonus getBonus() {
+        return bonus;
     }
 
     public List<Note> getNoteList() {
@@ -48,6 +53,10 @@ public class Pupil extends Person {
 
     public Pair<Pupil, Double> getPairForSubject(String subjectName) {
         return new Pair<>(this, calculateAverageNote(subjectName));
+    }
+
+    public void setBonus(IBonus bonus) {
+        this.bonus = bonus;
     }
 
     @Override

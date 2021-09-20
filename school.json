@@ -68,9 +68,10 @@
                   "lastName": "Kowalski"
                 }
               },
-              "note": 5.0
+              "note": 5.5
             }
           ],
+          "bonus": {},
           "firstName": "Kornelia",
           "lastName": "Matuszak"
         },
@@ -133,18 +134,6 @@
       ],
       "subjectList": [
         {
-          "name": "Historia",
-          "teacher": {
-            "subjects": [
-              "Chemia",
-              "Historia",
-              "Fizyka"
-            ],
-            "firstName": "Jan",
-            "lastName": "Kowalski"
-          }
-        },
-        {
           "name": "Fizyka",
           "teacher": {
             "subjects": [
@@ -158,6 +147,18 @@
         },
         {
           "name": "Chemia",
+          "teacher": {
+            "subjects": [
+              "Chemia",
+              "Historia",
+              "Fizyka"
+            ],
+            "firstName": "Jan",
+            "lastName": "Kowalski"
+          }
+        },
+        {
+          "name": "Historia",
           "teacher": {
             "subjects": [
               "Chemia",
