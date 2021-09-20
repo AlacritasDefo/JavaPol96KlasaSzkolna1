@@ -1,0 +1,206 @@
+{
+  "classes": [
+    {
+      "className": "Klasa IVa",
+      "pupilsList": [
+        {
+          "birthDate": {
+            "year": 1994,
+            "month": 1,
+            "day": 18
+          },
+          "noteList": [
+            {
+              "subject": {
+                "name": "Chemia",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 5.0
+            },
+            {
+              "subject": {
+                "name": "Fizyka",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 4.0
+            },
+            {
+              "subject": {
+                "name": "Chemia",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 3.0
+            },
+            {
+              "subject": {
+                "name": "Chemia",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 5.0
+            }
+          ],
+          "firstName": "Kornelia",
+          "lastName": "Matuszak"
+        },
+        {
+          "birthDate": {
+            "year": 1998,
+            "month": 6,
+            "day": 28
+          },
+          "noteList": [
+            {
+              "subject": {
+                "name": "Chemia",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 3.0
+            },
+            {
+              "subject": {
+                "name": "Fizyka",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 5.0
+            },
+            {
+              "subject": {
+                "name": "Chemia",
+                "teacher": {
+                  "subjects": [
+                    "Chemia",
+                    "Historia",
+                    "Fizyka"
+                  ],
+                  "firstName": "Jan",
+                  "lastName": "Kowalski"
+                }
+              },
+              "note": 2.0
+            }
+          ],
+          "firstName": "Amelia",
+          "lastName": "Domańska"
+        }
+      ],
+      "subjectList": [
+        {
+          "name": "Historia",
+          "teacher": {
+            "subjects": [
+              "Chemia",
+              "Historia",
+              "Fizyka"
+            ],
+            "firstName": "Jan",
+            "lastName": "Kowalski"
+          }
+        },
+        {
+          "name": "Fizyka",
+          "teacher": {
+            "subjects": [
+              "Chemia",
+              "Historia",
+              "Fizyka"
+            ],
+            "firstName": "Jan",
+            "lastName": "Kowalski"
+          }
+        },
+        {
+          "name": "Chemia",
+          "teacher": {
+            "subjects": [
+              "Chemia",
+              "Historia",
+              "Fizyka"
+            ],
+            "firstName": "Jan",
+            "lastName": "Kowalski"
+          }
+        }
+      ]
+    }
+  ],
+  "teachers": [
+    {
+      "subjects": [
+        "Chemia",
+        "Historia",
+        "Fizyka"
+      ],
+      "firstName": "Jan",
+      "lastName": "Kowalski"
+    }
+  ],
+  "subjects": [
+    {
+      "name": "Język angielski"
+    },
+    {
+      "name": "Plastyka"
+    },
+    {
+      "name": "Technika"
+    },
+    {
+      "name": "Fizyka"
+    },
+    {
+      "name": "Chemia"
+    },
+    {
+      "name": "Historia"
+    }
+  ],
+  "schoolName": "Szkoła Podstawowa nr 1"
+}

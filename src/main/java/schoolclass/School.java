@@ -1,5 +1,9 @@
 package schoolclass;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -81,5 +85,42 @@ public class School {
 
     public List<Teacher> getTeachers() {
         return teachers;
+    }
+
+    public void saveToFile(String fileName) {
+       //Gson gson = new Gson();
+       Gson gson = new GsonBuilder().setPrettyPrinting().create();
+       String text = gson.toJson(this);
+       File file = new File(fileName);
+        try {
+            FileWriter wr = new FileWriter(file);
+            wr.write(text);
+            wr.close();
+        }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    public School loadFromFile(String fileName) {
+       Gson gson = new Gson();
+       try {
+           FileReader re = new FileReader(fileName);
+           BufferedReader bu = new BufferedReader(re);
+           String text = "";
+           String line;
+           while((line = bu.readLine()) != null) {
+               text += line;
+           }
+           bu.close();
+           re.close();
+           System.out.println(text);
+           School sc = gson.fromJson(text, School.class);
+           return sc;
+       }
+       catch (IOException ioe) {
+           System.out.println(ioe.getMessage());
+       }
+       return null;
     }
 }

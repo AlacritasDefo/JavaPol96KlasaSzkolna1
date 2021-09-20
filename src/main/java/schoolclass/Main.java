@@ -102,6 +102,10 @@ public class Main {
         }
 
         klasa.showPupils();
+        school.saveToFile("school.json");
+        school = school.loadFromFile("school.json");
+        System.out.println("OUR SCHOOL RETRIEVED FROM JSON FILE:");
+        System.out.println(school);
     }
 
 }
