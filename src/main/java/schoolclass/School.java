@@ -4,17 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class School {
 
    private List<SchoolClass> classes;
    private List<Teacher> teachers;
-   private List<Subject> subjects;
-   private  String schoolName;
+   private static List<Subject> subjects;
+   private String schoolName;
    public static School instance = null;
 
    private School (String schoolName){
@@ -41,7 +42,7 @@ public class School {
                 '}';
     }
 
-    public void addSchoolClass (SchoolClass schoolClass){
+   public void addSchoolClass (SchoolClass schoolClass){
        classes.add(schoolClass);
    }
    public void addTeacher (Teacher teacher){
@@ -60,18 +61,58 @@ public class School {
    }
 
     /**
+     * Ustalenie listy przedmiotow uczonych w szkole
+     * @param subjectNames
+     */
+    public static void setSubjects(String... subjectNames) {
+        subjects.clear();
+        for(String subName : subjectNames) {
+            boolean jest = false;
+            for (Subject subject : subjects) {
+                if (subject.getName().equals(subName)) {
+                    jest = true;
+                    break;
+                }
+            }
+            if (jest == false)
+                subjects.add(new Subject(subName));
+        }
+    }
+    /**
+     * Metoda pozwalająca wstawiać do zbioru zestaw kilku obiektów
+     * @param objs
+     * @return
+     */
+    public void setSubjectsList(Subject... objs) {
+        subjects.clear();
+        Collections.addAll(subjects, objs);
+    }
+
+    /**
+     * Ustalenie listy przedmiotow uczonych w szkole
+     * @param set
+     */
+    public void setSubjectsList(Set<Subject> set) {
+        subjects.clear();
+        subjects.addAll(set);
+    }
+
+    /**
      * Dodawanie przedmiotu dla konkretnej klasy szkolnej
      */
-   public void addSubjectForClass (String subjectName, SchoolClass schoolClass) throws ClassExeption{
+   public void addSubjectForClass (String subjectName, SchoolClass schoolClass) throws ClassException {
        for(Subject subject : subjects){
            if(subject.getName().equals(subjectName)){
                schoolClass.addSubject(new Subject (subjectName));
                return;
            }
        }
-       throw new ClassExeption ("No subject "+ subjectName +" in school");
+       throw new ClassException("No subject "+ subjectName +" in school");
    }
 
+    /**
+     * Wyswietlenie klas szkolnych w szkole
+     */
     public void showClasses (){
         System.out.println(" Classes in school " + schoolName + " : ");
         for (SchoolClass schoolClass : classes){
@@ -79,7 +120,16 @@ public class School {
         }
    }
 
-    public List<Subject> getSubjects() {
+    /**
+     * Wyswietlenie informacji o przedmiotach uczonych w szkole
+     */
+    public void showSubjects() {
+        System.out.println("SUBJECTS IN THE SCHOOL " + schoolName);
+        for(Subject subject : subjects)
+            System.out.println(subject.getName());
+    }
+
+    public static List<Subject> getSubjects() {
         return subjects;
     }
 
@@ -88,8 +138,10 @@ public class School {
     }
 
     public void saveToFile(String fileName) {
-       //Gson gson = new Gson();
-       Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
+        Gson gson = builder.
+                create();
        String text = gson.toJson(this);
        File file = new File(fileName);
         try {
@@ -102,8 +154,10 @@ public class School {
         }
     }
 
-    public School loadFromFile(String fileName) {
-       Gson gson = new Gson();
+    public static School loadFromFile(String fileName) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
+        Gson gson = gsonBuilder.create();
        try {
            FileReader re = new FileReader(fileName);
            BufferedReader bu = new BufferedReader(re);
@@ -122,5 +176,9 @@ public class School {
            System.out.println(ioe.getMessage());
        }
        return null;
+    }
+
+    public void showSchool() {
+        System.out.println(this);
     }
 }

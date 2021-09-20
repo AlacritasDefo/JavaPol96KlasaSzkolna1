@@ -28,6 +28,19 @@ public class Teacher extends Person{
     }
 
 
+    /**
+     * Dodanie przedmiotow do listy przedmiotow uczonych przez nauczyciela
+     * @param subjects
+     */
+    public void addSubjects(String ... subjects) {
+        for(String s : subjects)
+            this.subjects.add(s);
+    }
+
+    /**
+     * Pobranie listy przedmiotow uczonych przez nauczyciela
+     * @return
+     */
     public Set<String> getSubjects() {
         return subjects;
     }

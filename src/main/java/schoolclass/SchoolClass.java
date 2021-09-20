@@ -1,7 +1,12 @@
 package schoolclass;
 
+import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.javatuples.Pair;
 
 public class SchoolClass {
@@ -14,6 +19,9 @@ public class SchoolClass {
         this.subjectList.addAll(subjectList);
     }
 
+    /**
+     * Pobranie listy przedmiotow uczonych w klasie szkolnej
+     */
     private HashSet<Subject> subjectList;
 
 
@@ -26,7 +34,6 @@ public class SchoolClass {
     public void addSubject(Subject subject){
         subjectList.add(subject);
     }
-
 
 
     public HashSet<Subject> getSubjectList() {
@@ -93,7 +100,50 @@ public class SchoolClass {
         }
     }
 
-    public void addTeachersToSubjects(List<Teacher> teachers) throws ClassExeption {
+    /**
+     * Dodanie uczniow do listy uczniow z klasy szkolnej
+     * @param objs
+     */
+    public void addPupils(Pupil... objs) {
+        Collections.addAll(pupilsList, objs);
+    }
+
+    /**
+     * Dodanie przedmiotu dla klasy z uwzglednieniem tego czy w szkole uczy sie tego przedmiotu
+     * @param subjectName
+     * @throws ClassException
+     */
+    public void addSubjectForClass(String subjectName) throws ClassException {
+        for (Subject subject : subjectList) {
+            if (subject.getName().equals(subjectName)) {
+                return;
+            }
+        }
+        boolean jest = false;
+        for(Subject subject : School.getSubjects())
+            if (subject.getName().equals(subjectName)) {
+                jest = true;
+                break;
+            }
+        if (jest == false)
+            throw new ClassException("There is no subject " + subjectName + " in the school!");
+        subjectList.add(new Subject(subjectName));
+    }
+
+    /**
+     * Deklaracja iteratora w postaci ClassIterator<Pupil>
+     * @return
+     */
+    public Iterator iterator() {
+        return new ClassIterator<Pupil>(pupilsList);
+    }
+
+    /**
+     * Przydzial nauczyciela do kazdego z przedmiotow uczonych w klasie szkolnej
+     * @param teachers
+     * @throws ClassException
+     */
+    public void addTeachersToSubjects(List<Teacher> teachers) throws ClassException {
         for (Subject subject : subjectList) {
             if ( subject.getTeacher() != null)
                 continue;
@@ -110,7 +160,7 @@ public class SchoolClass {
                     break;
             }
             if (teacherFound == false)
-                throw new ClassExeption ("Teacher for subject " + subject.getName() + " not found !" );
+                throw new ClassException("Teacher for subject " + subject.getName() + " not found !" );
         }
     }
 
@@ -188,5 +238,65 @@ public class SchoolClass {
     public Map<Integer, List<Pupil>> groupPupilsByAverage() {
         return pupilsList.stream()
                 .collect(Collectors.groupingBy(pupil -> (int) averageNotesForPupil(pupil).doubleValue()));
+    }
+
+    /**
+     * Zapisanie wszystkich danych klasy szkolnej w pliku JSON
+     * @param fileName
+     */
+    public void saveToFile(String fileName) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        String text = gson.toJson(this);
+        File file = new File(fileName);
+        try {
+            FileWriter wr = new FileWriter(file);
+            wr.write(text);
+            wr.close();
+        }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    /**
+     * Deserializacja klasy szkolnej z pliku JSON
+     * @param fileName
+     * @return
+     */
+    public static SchoolClass loadFromFile(String fileName) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
+        Gson gson = new GsonBuilder()
+                .create();
+        try {
+            FileReader re = new FileReader(fileName);
+            BufferedReader bu = new BufferedReader(re);
+            String text = "";
+            String line;
+            while((line = bu.readLine()) != null) {
+                text += line;
+            }
+            bu.close();
+            re.close();
+            System.out.println(text);
+            SchoolClass sc = gson.fromJson(text, SchoolClass.class);
+            return sc;
+        }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+        return null;
+    }
+
+    public void showPupilsSortedByName() {
+        System.out.println("CLASS SORTED BY PUPIL'S LASTNAME");
+        PupilNameComparator comparator = new PupilNameComparator();
+        Collections.sort(pupilsList, comparator);
+        for(Pupil pupil : pupilsList)
+            System.out.println(pupil.toString());
     }
 }
