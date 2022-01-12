@@ -24,7 +24,6 @@ public class School {
        classes = new ArrayList<SchoolClass>();
        subjects = new ArrayList<Subject>();
    }
-
     public static School getInstance(String schoolName) {
         if (instance == null) {
             instance = new School(schoolName);

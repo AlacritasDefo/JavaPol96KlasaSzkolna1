@@ -11,7 +11,6 @@ import java.util.List;
 public class ClassIterator<T> implements Iterator<T> {
     List<T> list;
     int current;
-
     /**
      * Zainicjowanie iteratora w konstruktorze
      */

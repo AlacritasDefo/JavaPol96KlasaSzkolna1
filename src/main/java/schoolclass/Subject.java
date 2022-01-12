@@ -12,7 +12,6 @@ public class Subject {
         this.name = name;
         this.teacher = teacher;
     }
-
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }

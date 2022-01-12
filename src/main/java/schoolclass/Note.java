@@ -16,7 +16,6 @@ public class Note {
     public double getNote() {
         return note;
     }
-
     @Override
     public String toString() {
         return "Note{" +

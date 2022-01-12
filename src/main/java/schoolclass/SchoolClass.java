@@ -18,7 +18,6 @@ public class SchoolClass {
         this.subjectList.clear();
         this.subjectList.addAll(subjectList);
     }
-
     /**
      * Pobranie listy przedmiotow uczonych w klasie szkolnej
      */

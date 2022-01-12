@@ -27,7 +27,6 @@ public class Teacher extends Person{
         subjects.add(subjectName);
     }
 
-
     /**
      * Dodanie przedmiotow do listy przedmiotow uczonych przez nauczyciela
      * @param subjects

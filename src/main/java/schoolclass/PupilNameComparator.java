@@ -10,5 +10,4 @@ public class PupilNameComparator implements Comparator<Pupil> {
     public int compare(Pupil firstPupil, Pupil secondPupil) {
         return firstPupil.getLastName().compareTo(secondPupil.getLastName());
     }
-
 }

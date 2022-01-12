@@ -6,7 +6,6 @@ package schoolclass;
 public abstract class Person {
     public String firstName;
     public String lastName;
-
     /**
      * Konstruktor klasy Person
      */

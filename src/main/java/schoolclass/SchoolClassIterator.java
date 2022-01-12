@@ -15,7 +15,6 @@ public class SchoolClassIterator implements Iterator<Pupil> {
             current = -1;
         }
     }
-
     @Override
     public boolean hasNext() {
         if (pupilList.size() > current)

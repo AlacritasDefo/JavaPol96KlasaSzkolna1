@@ -14,7 +14,6 @@ public class Pupil extends Person {
     Set<BONUS_BAHAVIOUR> behaviours;
     //TODO: ustawienie 'transient' dla pola bonus powoduje, ze serializator Gson nie widzi tego pola
     private transient IBonus bonus;
-
     /**
      * Dodanie uczniowi ponadstandardowego zachowania (np. bohaterski czyn, udzial w olimpiadzie
      * @param behaviour
